@@ -1,0 +1,72 @@
+## by GlennCheng
+
+name: Magento Continous Integration (CI)
+on: [push, pull_request]
+
+jobs:
+#    static:
+#        name: Static Code Analysis
+#        runs-on: ubuntu-latest
+#        steps:
+#            - uses: actions/checkout@v2
+#            - uses: extdn/github-actions-m2/magento-coding-standard@master
+    phpmd:
+        name: M2 Mess Detector
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: extdn/github-actions-m2/magento-mess-detector@master
+    phpstan:
+        name: M2 PhpStan
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: extdn/github-actions-m2/magento-phpstan@master
+
+
+
+### by GlennCheng
+#
+#on: [push, pull_request]
+#name: Magento Continous Integration (CI)
+#jobs:
+#    #    static:
+#    #        name: Static Code Analysis
+#    #        runs-on: ubuntu-latest
+#    #        steps:
+#    #            - uses: actions/checkout@v2
+#    #            - uses: extdn/github-actions-m2/magento-coding-standard@master
+#    phpmd:
+#        name: M2 Mess Detector
+#        runs-on: ubuntu-latest
+#        steps:
+#            - uses: actions/checkout@v2
+#            - uses: extdn/github-actions-m2/magento-mess-detector@master
+#    M2phpstan:
+#        name: M2 PhpStan
+#        runs-on: ubuntu-latest
+#        steps:
+#            - uses: actions/checkout@v2
+#            - uses: extdn/github-actions-m2/magento-phpstan@master
+#    phpstan:
+#        name: PHPStan
+#        runs-on: ubuntu-latest
+#        steps:
+#            -   name: Setup PHP with tools
+#                uses: shivammathur/setup-php@v2
+#                with:
+#                    php-version: '7.4'
+#                    tools: phpstan
+#
+##            - name: Install dependencies
+##              uses: php-actions/composer@v2
+##              with:
+##                command: require --dev bitexpert/phpstan-magento
+#
+#            -   uses: actions/checkout@v2
+#            -   name: PHPStan
+#                uses: docker://oskarstark/phpstan-ga
+#                env:
+#                    REQUIRE_DEV: true
+#                with:
+#                    args: analyse vendor/ app/ --level=6
